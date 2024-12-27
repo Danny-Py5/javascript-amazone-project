@@ -15,9 +15,8 @@ export function  loadFromstorage() {
             quantity: 1,
             deliveryOptionId: '2'
         }
-    ]
-    
-}
+    ];
+};
 
 function saveToStorage(){
     localStorage.setItem('cart', JSON.stringify(cart));

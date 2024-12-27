@@ -45,7 +45,7 @@ import {renderChekoutHeader} from './checkoutHeader.js'
                     <div class="product-price">
                         $${formatCurrency(matchingProduct.priceCents)}
                     </div>
-                    <div class="product-quantity">
+                    <div class="product-quantity">  
                         <span>
                         Quantity: <span class="quantity-label js-quantity-label-test-${matchingProduct.id} js-quantity-label-${matchingProduct.id}">${cartItem.quantity}</span>
                         </span>
