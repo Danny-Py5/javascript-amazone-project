@@ -39,7 +39,7 @@ import {renderChekoutHeader} from './checkoutHeader.js'
                 src="${ matchingProduct.image}">
 
                 <div class="cart-item-details">
-                    <div class="product-name">
+                    <div class="product-name  js-product-name">
                         ${matchingProduct.name}
                     </div>
                     <div class="product-price">
@@ -97,7 +97,7 @@ import {renderChekoutHeader} from './checkoutHeader.js'
                 <div class="delivery-option js-delivery-option" 
                     data-product-id="${matchingProductID}"      
                     data-delivery-option-id="${deliveryOption.id}">
-                    <input type="radio" ${isChecked ? 'checked' : ''}
+                    <input class="${matchingProductID}-${deliveryOption.id}" type="radio" ${isChecked ? 'checked' : ''}
                     class="delivery-option-input"
                     name="delivery-option-${matchingProductID}">
                     <div>

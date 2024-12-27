@@ -72,6 +72,15 @@ export function updateQuantity(productId, newQuantity){
 };
 
 export function updateDeliveryOption(productId, newDeliveryOptionID) {
+    const allProductId = [];
+    cart.forEach(product => {
+        allProductId.push(product.productId);
+    });
+    // check if the productId not in all the productId arr
+    if (!allProductId.includes(productId)){
+        console.log('not found');
+        return;
+    };
     let isExistProduct;
 
     cart.forEach(cartItem => {
