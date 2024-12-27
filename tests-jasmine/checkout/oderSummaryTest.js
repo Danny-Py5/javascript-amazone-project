@@ -29,18 +29,19 @@ describe('Integration Test: renderOrderSummary', () => {
         `; 
         renderOrderSummary(); 
     }); 
-
+    
     afterEach(() => {
         document.querySelector('.js-test-container').innerHTML = '';
     });
-
+    
     it('Should render the order summary', () => {
         document.querySelector('.js-test-container').innerHTML = '<div class="js-order-summary"></div>'
         renderOrderSummary(); 
         expect(document.querySelectorAll('.cart-item-container-test').length).toEqual(2)
         expect(document.querySelector(`.js-quantity-label-test-${productId1}`).textContent).toEqual('2');
         // or use toContain to check for string
-        expect(document.querySelectorAll('.product-quantity')[0].innerText).toContain('Quantity: 2')
+        expect(document.querySelectorAll('.product-quantity')[0].innerText).toContain('Quantity: 2');
+        
     });
 
     it('Should delete an item correctly and remain 1', () => {

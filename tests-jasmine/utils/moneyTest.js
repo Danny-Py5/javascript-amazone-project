@@ -20,6 +20,10 @@ describe('Test suite: formatCurrency', () => {
 
     it('Catch non number param: edge case', () => {
         expect(formatCurrency("2000.4")).toEqual(NaN);
+    });
+
+    it('works with negative value', () => {
+        expect(formatCurrency(-2000)).toEqual('-20.00');
     })
 });
 
