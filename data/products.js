@@ -53,6 +53,31 @@ class Clothing extends Product {
   };
 };
 
+
+// console.log(this);
+// this.a = 4444
+// const object1 = {
+//   a: 2, 
+//   b: this.a
+// }
+
+// let b = () => {
+//   console.log(this)
+// }
+// b()
+// let c = {
+//   a: 4, 
+//   method: function () {
+//     console.log(this);
+//     const cc = () => {
+//       console.log(this);
+//     }
+//     cc();
+//   }
+// }
+// c.method();
+
+
 /*
 const tshirt = new Clothing({
   id: "83d4ca15-0f35-48f5-b7a3-1ea210004f2e",
