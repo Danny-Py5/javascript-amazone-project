@@ -1,5 +1,5 @@
 import {renderOrderSummary} from '../../scripts/checkout/orderSummary.js';
-import {loadFromstorage, updateQuantity, cart} from '../../data/cart.js';
+import { cart } from '../../data/cart-class.js';
 
 
 var log = console.log;
@@ -25,7 +25,7 @@ describe('Integration Test: renderOrderSummary', () => {
                 }
             ]);
         });
-        loadFromstorage();
+        cart.loadFromstorage();
 
         document.querySelector('.js-test-container').innerHTML = `
         <div class="js-order-summary"></div> 
@@ -60,8 +60,8 @@ describe('Integration Test: renderOrderSummary', () => {
         // console.log(document.querySelector(`.js-cart-item-container-${productId1}`));
         expect(document.querySelector(`.js-cart-item-container-${productId1}`)).toEqual(null);
         expect(document.querySelector(`.js-cart-item-container-${productId2}`)).not.toEqual(null);
-        expect(cart.length).toEqual(1);
-        expect(cart[0].productId).toEqual(productId2);
+        expect(cart.cartItems.length).toEqual(1);
+        expect(cart.cartItems[0].productId).toEqual(productId2);
         console.log(expect(document.querySelector(`.js-cart-item-container-${productId2}`).id));
 
         console.log(document.querySelector(`.js-cart-item-container-${productId2}`));
@@ -72,7 +72,7 @@ describe('Integration Test: renderOrderSummary', () => {
         document.querySelector(`.js-update-quantity-link-${productId1}`).click();
         document.querySelector(`.js-quantity-input-${productId1}`).value = '9';
         document.querySelector(`.js-save-quantity-link-${productId1}`).click();
-        updateQuantity(productId1, '9');
+        cart.updateQuantity(productId1, '9');
        
         expect(document.querySelector(`.js-quantity-label-test-${productId1}`).innerText).toEqual('9');
     });
@@ -81,9 +81,9 @@ describe('Integration Test: renderOrderSummary', () => {
        // check the third option in the delivery options  :it class is productId + deliveryOptionId;
        document.querySelector(`.${productId1}-3`).click();
        expect(document.querySelector(`.${productId1}-3`).checked).toBe(true);
-       expect(cart.length).toEqual(2);
-       expect(cart[0].productId).toEqual(productId1);
-       expect(cart[0].deliveryOptionId).toEqual('3');
+       expect(cart.cartItems.length).toEqual(2);
+       expect(cart.cartItems[0].productId).toEqual(productId1);
+       expect(cart.cartItems[0].deliveryOptionId).toEqual('3');
     })
 })
 
