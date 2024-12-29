@@ -61,7 +61,7 @@ class Cart{
     
         this.cartItems = newCart;
     
-        this.saveToStorage();
+        this.#saveToStorage();
     };
 
     updateQuantity(productId, newQuantity){
@@ -70,7 +70,7 @@ class Cart{
             if (cartItem.productId === productId && newQuantity > 0 && newQuantity < 1000){
                 cartItem.quantity = Number(newQuantity);
                 document.querySelector(`.js-quantity-label-${productId}`).textContent = newQuantity;
-                this.saveToStorage();
+                this.#saveToStorage();
             };
         });
     }; 
@@ -95,7 +95,7 @@ class Cart{
 
         isExistProduct.deliveryOptionId = newDeliveryOptionID;
 
-        this.saveToStorage();
+        this.#saveToStorage();
     };
 
     getCartQuantity() {

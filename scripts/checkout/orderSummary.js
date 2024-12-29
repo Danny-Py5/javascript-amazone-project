@@ -1,4 +1,4 @@
-import {removeFromCart, updateQuantity, cart, updateDeliveryOption} from '../../data/cart.js';
+import {cart } from '../../data/cart-class.js';
 import { products, getProduct} from '../../data/products.js';
 import { formatCurrency } from '../utils/money.js';
 import {deliveryOptions, getDeliveryOption} from '../../data/delivery-options.js';
@@ -14,7 +14,7 @@ import {renderChekoutHeader} from './checkoutHeader.js'
 
     let cartSummaryHTML = '';
 
-    cart.forEach((cartItem) => {
+    cart.cartItems.forEach((cartItem) => {
         const { productId } = cartItem;
 
         const matchingProduct = getProduct(productId);
@@ -124,7 +124,7 @@ import {renderChekoutHeader} from './checkoutHeader.js'
             // console.log('delete')
 
             const productId = link.dataset.productId;
-            removeFromCart(productId);
+            cart.removeFromCart(productId);
             const cartContainer = document.querySelector(`.js-cart-item-container-${productId}`);
             cartContainer.remove();
             renderChekoutHeader();
@@ -154,7 +154,7 @@ import {renderChekoutHeader} from './checkoutHeader.js'
             const productId = link.dataset.productId;
             const newQuantity = document.querySelector(`.js-quantity-input-${productId}`).value;
             // update the quantity in the cart
-            updateQuantity(productId, newQuantity);
+            cart.updateQuantity(productId, newQuantity);
             // update the quantity on the page
             renderChekoutHeader();
             // empty the input element
@@ -175,7 +175,7 @@ import {renderChekoutHeader} from './checkoutHeader.js'
             element.addEventListener('click', () => {
                 const {productId, deliveryOptionId} = element.dataset;
                 // console.log(productId, deliveryOptionId)
-                updateDeliveryOption(productId, deliveryOptionId);
+                cart.updateDeliveryOption(productId, deliveryOptionId);
                 reRenderPage();
             });
     });
