@@ -111,11 +111,20 @@ class Cart{
 export const cart = new Cart('cart');
 
 // const businessCart = new Cart('cart-business');
-
-
-
-
 // console.log(cart);
 // console.log(businessCart);
+
+
+export function loadCart(fun) {
+  const xml = new XMLHttpRequest();
+  xml.addEventListener('load', () => {
+    console.log(xml.response);
+    fun();
+  });
+
+  xml.open('GET', 'https://supersimplebackend.dev/cart');
+  xml.send();
+};
+
     
     

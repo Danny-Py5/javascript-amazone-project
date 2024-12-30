@@ -129,7 +129,10 @@ export function loadProducts(fun) {
       }
       return new Product(productDetails);
     });
+    console.log('Load product');
+    
     fun();
+
   });
 
   xml.open('GET', 'https://supersimplebackend.dev/products');
