@@ -116,7 +116,31 @@ const tshirt = new Clothing({
 console.log(tshirt);
 console.log(tshirt.getPrice());
 */
+
 export let products = [];
+
+export function loadProductsFetch() {
+  const promise = fetch('https://supersimplebackend.dev/products').then(response => {
+    return response.json();
+  }).then((productData) => {
+     products = productData.map(productDetails => {
+      if (productDetails.type == 'clothing'){
+        return new Clothing(productDetails);
+      } else if (productDetails.type == 'instructionsLink') {
+        return new Appliances(productDetails);
+      };
+      return new Product(productDetails);
+    });
+    console.log('Load product');
+  });
+  return promise;
+};
+
+/*
+loadProductsFetch().then(() => {
+   console.log('next step')
+})
+*/
 
 export function loadProducts(fun) {
   const xml = new XMLHttpRequest();
