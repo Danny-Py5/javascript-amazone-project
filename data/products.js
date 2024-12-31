@@ -116,7 +116,28 @@ const tshirt = new Clothing({
 console.log(tshirt);
 console.log(tshirt.getPrice());
 */
+export let products = [];
 
+export function loadProducts(fun) {
+  const xml = new XMLHttpRequest();
+  xml.addEventListener('load', () => {
+    products = JSON.parse(xml.response).map(productDetails => {
+      if (productDetails.type == 'clothing'){
+        return new Clothing(productDetails);
+      } else if (productDetails.type == 'instructionsLink') {
+        return new Appliances(productDetails);
+      }
+      return new Product(productDetails);
+    });
+    fun();
+  });
+
+  xml.open('GET', 'https://supersimplebackend.dev/products');
+  xml.send();
+};
+
+
+/*
 export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
@@ -819,3 +840,7 @@ export const products = [
   }
   return new Product(productDetails);
 });
+
+*/
+
+

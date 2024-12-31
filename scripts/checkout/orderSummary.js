@@ -7,8 +7,7 @@ import renderPaymentSummary from './paymentSummary.js';
 import {renderChekoutHeader} from './checkoutHeader.js'
 
 
-
- export function renderOrderSummary() {
+export function renderOrderSummary() {
 
     renderChekoutHeader();
 
