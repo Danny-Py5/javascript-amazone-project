@@ -6,7 +6,22 @@ import { loadCart } from "../data/cart-class.js";
 // import '../data/cart-class.js';
 // import '../data/car.js';
 
+async function loadpage(){
+    await loadProductsFetch();
 
+    await new Promise((resolve) => {
+        loadCart(() => {
+            resolve();
+        });
+    })
+
+    renderOrderSummary();
+    renderPaymentSummary();
+};
+
+loadpage()
+
+/*
 Promise.all([
     loadProductsFetch(),
     new Promise((resolve) => {
@@ -20,6 +35,7 @@ Promise.all([
     renderOrderSummary();
     renderPaymentSummary();
 })
+*/
 
 
 /*
