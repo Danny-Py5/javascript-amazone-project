@@ -46,7 +46,7 @@ Promise.all([
 */
 
 
-/*
+/* 
 new Promise((resolve, reject) => {
     loadProducts(() => {
         resolve('value1');
