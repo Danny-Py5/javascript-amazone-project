@@ -66,6 +66,7 @@ class Cart{
 
     updateQuantity(productId, newQuantity){
         this.cartItems.forEach(cartItem => {
+            // change the cart quantity (increase or 1)
             // if cartProductId is = to productID (param) and the newquantity is grater than 0 and as well less than 100
             if (cartItem.productId === productId && newQuantity > 0 && newQuantity < 1000){
                 cartItem.quantity = Number(newQuantity);
@@ -74,6 +75,16 @@ class Cart{
             };
         });
     }; 
+
+    updateCartQuantity() {
+        // calculate total quantity of products in the cart
+        let cartQuantity = 0;
+        this.cartItems.forEach(cartItem => {
+            cartQuantity += cartItem.quantity;
+        })
+        // show cart quantity on the website
+        document.querySelector('.js-cart-quantity').textContent = cartQuantity;
+    };
 
     updateDeliveryOption(productId, newDeliveryOptionID) {
         const allProductId = [];

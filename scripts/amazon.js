@@ -1,4 +1,4 @@
-import {cart, addToCart} from '../data/cart.js';  // import * as cartModule from '../data/cart.js';  // this enables us to use as cartModule.cart
+import {cart} from '../data/cart-class.js';  // import * as cartModule from '../data/cart.js';  // this enables us to use as cartModule.cart
 import {products, loadProducts} from '../data/products.js';
 import {formatCurrency} from './utils/money.js';
 
@@ -9,7 +9,7 @@ loadProducts(() => {
 
 
 function renderProductGrid() {
-    updateCartQuantity();
+    cart.updateCartQuantity();
 
     let productsHTML = '';
     products.forEach(product => {
@@ -70,17 +70,6 @@ function renderProductGrid() {
     })
     document.querySelector('.js-products-grid').innerHTML = productsHTML;
 
-
-    function updateCartQuantity() {
-        // calculate total quantity of products in the cart
-        let cartQuantity = 0;
-        cart.forEach(cartItem => {
-            cartQuantity += cartItem.quantity;
-        })
-        // show cart quantity on the website
-        document.querySelector('.js-cart-quantity').textContent = cartQuantity;
-    };
-
     // make the add to chart button interactive.
     let timeoutID;
     document.querySelectorAll('.js-add-to-chart').forEach(button => {
@@ -93,8 +82,8 @@ function renderProductGrid() {
             const productQuantity = Number(document.querySelector(`.js-product-quantity-selector-${productId}`).value);
             // console.log(productQuantity);
             
-            addToCart(productId,  productQuantity)
-            updateCartQuantity()
+            cart.addToCart(productId,  productQuantity)
+            cart.updateCartQuantity()
 
             // show added-to-cart popup
             let addedToCartElem = document.querySelector(`.js-added-to-cart-${productId}`);

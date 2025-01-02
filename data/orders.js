@@ -1,11 +1,28 @@
-export const orders = JSON.parse(localStorage.getItem('orders')) || [];
+import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 
-export function addOrder(order) {
-    orders.unshift(order);
+class Order {
+    localStorageKey;
+    orderItems;
 
-    saveToLocalStorage();
-}
+    constructor(localStorageKey) {
+        this.localStorageKey = localStorageKey;
+        this.orderItems = JSON.parse(localStorage.getItem(this.localStorageKey)) || [];
+    };
+    addOrder(order) {
+        this.orderItems.unshift(order);
 
-function saveToLocalStorage() {
-    localStorage.setItem('orders', JSON.stringify(orders));
-}
+        this.saveToLocalStorage();
+    };
+
+    saveToLocalStorage() {
+        localStorage.setItem(this.localStorageKey, JSON.stringify(this.orderItems));
+    };
+
+    formatDate(date){
+        const orderTime = dayjs(date);
+        return `${orderTime.format('MMMM')} ${orderTime.date()}`
+    }
+};
+
+export const order = new Order('orders');
+var log = console.log;

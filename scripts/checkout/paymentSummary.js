@@ -2,7 +2,7 @@ import { cart } from "../../data/cart-class.js"
 import { getProduct } from "../../data/products.js";
 import { getDeliveryOption } from "../../data/delivery-options.js";
 import { formatCurrency } from "../utils/money.js";
-import { addOrder } from "../../data/orders.js";
+import { order } from "../../data/orders.js";
 
 export default function renderPaymentSummary() {
     let productPriceCents = 0;
@@ -72,8 +72,8 @@ export default function renderPaymentSummary() {
                     )
                 }
             );
-            const order = await response.json();
-            addOrder(order);
+            const orders = await response.json();
+            order.addOrder(orders);
         } catch (error) {
             console.log('unexpected error. Try again later.')
         }
