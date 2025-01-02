@@ -105,6 +105,23 @@ class Cart{
         });
         return cartQuantity;
     };
+
+    loadCart(fun) {
+        const xml = new XMLHttpRequest();
+        xml.addEventListener('load', () => {
+          console.log(xml.response);
+          fun();
+        });
+      
+        xml.open('GET', 'https://supersimplebackend.dev/cart');
+        xml.send();
+      };
+      
+
+    async loadCartFetch() {
+        const response = await fetch('https://supersimplebackend.dev/cart');
+        return response.text();
+    }
 };
 
 
@@ -115,16 +132,8 @@ export const cart = new Cart('cart');
 // console.log(businessCart);
 
 
-export function loadCart(fun) {
-  const xml = new XMLHttpRequest();
-  xml.addEventListener('load', () => {
-    console.log(xml.response);
-    fun();
-  });
 
-  xml.open('GET', 'https://supersimplebackend.dev/cart');
-  xml.send();
-};
+
 
     
     

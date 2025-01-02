@@ -67,7 +67,7 @@ describe('Test Suit: Clothing', () => {
         const extralInfoCont = document.createElement('div');
         extralInfoCont.innerHTML = product.extraInfoHTML();
 
-        expect(extralInfoCont.firstChild.href).toEqual('http://127.0.0.1:5501/tests-jasmine/images/clothing-size-chart.png');
+        expect(extralInfoCont.firstChild.href).toEqual('http://127.0.0.1:5502/tests-jasmine/images/clothing-size-chart.png');
     });
 });
 
